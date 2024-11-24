@@ -43,3 +43,5 @@ end
 
 gem 'jwt'
 gem 'pundit'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
