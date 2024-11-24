@@ -17,6 +17,8 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
+    @post.user = current_user
+    authorize @post
 
     if @post.save
       render json: @post, status: :created, location: @post
@@ -27,6 +29,8 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
+    authorize @post
+    
     if @post.update(post_params)
       render json: @post
     else
@@ -36,6 +40,7 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1
   def destroy
+    authorize @post
     @post.destroy!
   end
 
@@ -47,6 +52,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:user_id, :title, :body)
+      params.require(:post).permit(:title, :body) 
     end
 end
