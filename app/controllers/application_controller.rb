@@ -12,7 +12,7 @@ class ApplicationController < ActionController::API
       decoded = JWT.decode(token, SECRET_KEY)[0]
       if decoded['exp'] < Time.now.to_i
         render json: { errors: 'Token has expired' }, status: :unauthorized 
-        return    
+        return      
       end
       @current_user = User.find(decoded['user_id'])
     rescue ActiveRecord::RecordNotFound, JWT::DecodeError

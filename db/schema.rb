@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_24_015534) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_24_174416) do
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title"
@@ -18,6 +18,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_24_015534) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "revoked_tokens", force: :cascade do |t|
+    t.string "jti"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["jti"], name: "index_revoked_tokens_on_jti"
   end
 
   create_table "users", force: :cascade do |t|
