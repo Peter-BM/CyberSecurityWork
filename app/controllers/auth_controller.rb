@@ -27,7 +27,9 @@ class AuthController < ApplicationController
   private
 
   def encode_token(payload)
-    payload[:exp] = 2.minutes.from_now.to_i
+    payload[:jti] = SecureRandom.uuid
+    payload[:exp] = 5.minutes.from_now.to_i
+
     JWT.encode(payload, SECRET_KEY)
   end
 

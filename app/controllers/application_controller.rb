@@ -10,15 +10,19 @@ class ApplicationController < ActionController::API
   
     begin
       decoded = JWT.decode(token, SECRET_KEY)[0]
+      if RevokedToken.exists?(jti: decoded['jti'])  
+        render json: { errors: 'Token has been revoked' }, status: :unauthorized
+        return
+      end
       if decoded['exp'] < Time.now.to_i
-        render json: { errors: 'Token has expired' }, status: :unauthorized 
-        return      
+        render json: { errors: 'Token has expired' }, status: :unauthorized
+        return
       end
       @current_user = User.find(decoded['user_id'])
     rescue ActiveRecord::RecordNotFound, JWT::DecodeError
       render json: { errors: 'Unauthorized' }, status: :unauthorized
     end
-  end
+  end  
 
   def current_user
     @current_user

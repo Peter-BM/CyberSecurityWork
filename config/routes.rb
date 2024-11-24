@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   post '/login', to: 'auth#login'
   post '/signup', to: 'auth#signup'
+  
+  post '/revoke', to: 'tokens#revoke'
 end
   
