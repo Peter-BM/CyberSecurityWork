@@ -42,6 +42,7 @@ class PostsController < ApplicationController
   def destroy
     authorize @post
     @post.destroy!
+    render json: { message: 'Post deleted successfully' }, status: :ok
   end
 
   private
