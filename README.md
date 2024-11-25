@@ -1,6 +1,11 @@
 
 # Blog Avaliação A1/3 Cyber Security
 
+## Academicos: 
+- 385950 - Angelo Gabriel Fabrício Zampieri
+- 384905 - Carlos Elian Lopes Vieira
+- 386175 - Pedro Bobella Meneghini
+
 ## Descrição
 Esta aplicação é uma API para gerenciar um blog com autenticação baseada em JWT, autorização com Pundit, e gerenciamento de tokens. Você pode realizar operações CRUD em posts, testar autenticação, autorização e manuseio de tokens usando o **Postman**.
 
